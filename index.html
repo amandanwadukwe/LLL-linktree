@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lush & Loud by Laju</title>
+    <link rel="icon" href="favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Your existing CSS */
+        /* ===== BASE ===== */
+        :root {
+            --black: #000;
+            --white: #fff;
+            --accent: #F4A300; /* Electric pink */
+            --accent-alt: #F4A300; /* Cyan */
+            --gray: #f5f5f5;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: sans-serif;
+            font-weight: 800;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; }
+
+        /* ===== LAYOUT GRID ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Link Tree Specific Styles */
+        .linktree {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 0;
+        }
+
+        .linktree-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .linktree-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--black);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+
+        .linktree-avatar:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .linktree-title {
+            font-size: clamp(32px, 5vw, 48px);
+            margin: 0 0 0.5rem;
+            background: linear-gradient(90deg, var(--black), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: background-position 0.6s ease;
+            background-size: 200% 100%;
+            background-position: left;
+        }
+
+        .linktree-title:hover {
+            background-position: right;
+        }
+
+        .linktree-bio {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .linktree-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .linktree-link {
+            position: relative;
+            padding: 1.25rem 2rem;
+            background: var(--white);
+            border: 3px solid var(--black);
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .linktree-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            color: var(--white);
+            background: var(--black);
+            border-color: var(--accent);
+        }
+
+        .linktree-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.6s ease;
+        }
+
+        .linktree-link:hover::before {
+            left: 100%;
+        }
+
+        .linktree-link-icon {
+            width: 20px;
+            height: 20px;
+            transition: var(--transition);
+        }
+
+        .linktree-link:hover .linktree-link-icon {
+            transform: rotate(10deg) scale(1.2);
+        }
+
+        .linktree-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .linktree-social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray);
+            transition: var(--transition);
+        }
+
+        .linktree-social-link:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .linktree-footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .linktree-link:nth-child(1) { animation: fadeIn 0.5s 0.1s both; }
+        .linktree-link:nth-child(2) { animation: fadeIn 0.5s 0.2s both; }
+        .linktree-link:nth-child(3) { animation: fadeIn 0.5s 0.3s both; }
+        .linktree-link:nth-child(4) { animation: fadeIn 0.5s 0.4s both; }
+        .linktree-link:nth-child(5) { animation: fadeIn 0.5s 0.5s both; }
+        .linktree-link:nth-child(6) { animation: fadeIn 0.5s 0.6s both; }
+        .linktree-social { animation: fadeIn 0.5s 0.8s both; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .linktree-link {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .linktree-avatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="linktree">
+            <header class="linktree-header">
+                <img src="./logo.png" alt="Profile" class="linktree-avatar">
+                <h1 class="linktree-title">@lushnloudaf</h1>
+                <p class="linktree-bio">Black. Queer. Loud. Sapphic</p>
+            </header>
+
+            <main class="linktree-links">
+                <a href="https://lushandloudbylaju.netlify.app/" target="_blank" class="linktree-link">
+                    
+                    Website
+                </a>
+                
+            </main>
+
+            <div class="linktree-social">
+                
+                <a href="https://www.instagram.com/lushnloudaf/?hl=en" target="_blank" class="linktree-social-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg> 
+                </a>
+              
+            </div>
+
+            <footer class="linktree-footer">
+                © 2025 Lush & Loud by Laju. All rights reserved.
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
